@@ -117,37 +117,46 @@ package tech.oldes.google
 		}
 
 		public function fetchAssetsPack(pack:String):int {
+			if (pack == null) return null;
 			return _extContext.call("fetchAssetsPack", pack) as int;
 		}
 
 		public function getAssetAbsolutePath(pack:String, path:String):String {
+			if (pack == null || path == null) return null;
 			return _extContext.call("getAssetAbsolutePath", pack, path) as String;
 		}
 
 		public function getAssetPackLocation(pack:String):String {
+			if (pack == null) return null;
 			return _extContext.call("getAssetPackLocation", pack) as String;
 		}
 
 		public function getAssetPackStatus(pack:String):int {
+			if (pack == null) return null;
 			return _extContext.call("getAssetPackStatus", pack) as int;
 		}
 
 		public function getBytesDownloaded(pack:String):int {
+			if (pack == null) return null;
 			return _extContext.call("getBytesDownloaded", pack) as int;
 		}
 
 		public function getTotalBytesToDownLoad(pack:String):int {
+			if (pack == null) return null;
 			return _extContext.call("getTotalBytesToDownLoad", pack) as int;
 		}
 
 		public function getTransferProgressPercentage(pack:String):int {
+			if (pack == null) return null;
 			return _extContext.call("getTransferProgressPercentage", pack) as int;
 		}
 
-		public function showCellularDataConfirmation(pack:String):Boolean {
-			return _extContext.call("showCellularDataConfirmation", pack) as Boolean;
+		public function showConfirmationDialog():Boolean {
+			return _extContext.call("showConfirmationDialog") as Boolean;
 		}
 
+		// These OBB related functions are here in case when migrating from OBB to AAB.
+		// In such a case one must delete existing OBB file to save a space on device! 
 		public function getObbDir():String {
 			return _extContext.call("getObbDir") as String;
 		}
@@ -155,6 +164,7 @@ package tech.oldes.google
 			return _extContext.call("getMainOBBFile", version) as String;
 		}
 
+		// Just for testing...
 		public function testException(status:int):Boolean {
 			return _extContext.call("testException", status) as Boolean;
 		}

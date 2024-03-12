@@ -46,7 +46,7 @@ public class GooglePlayAssetsExtensionContext extends FREContext
 		functions.put("getBytesDownloaded", new GooglePlayAssetsFunctions.GetBytesDownloaded());
 		functions.put("getTotalBytesToDownLoad", new GooglePlayAssetsFunctions.GetTotalBytesToDownLoad());
 		functions.put("getTransferProgressPercentage", new GooglePlayAssetsFunctions.GetTransferProgressPercentage());
-		functions.put("showCellularDataConfirmation", new GooglePlayAssetsFunctions.ShowCellularDataConfirmation());
+		functions.put("showConfirmationDialog", new GooglePlayAssetsFunctions.ShowConfirmationDialog());
 
 		functions.put("testException", new GooglePlayAssetsFunctions.TestException());
 		return functions;

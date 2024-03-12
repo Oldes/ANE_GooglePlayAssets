@@ -17,7 +17,7 @@ Rebol [
 	}
 ]
 
-import air-tools
+import airsdk ;== https://github.com/Oldes/Rebol-AIRSDK
 
 make-dir %build/
 

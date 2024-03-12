@@ -24,6 +24,7 @@ package tech.oldes.google
 		public static const CANCELED         :int = 6;
 		public static const WAITING_FOR_WIFI :int = 7;
 		public static const NOT_INSTALLED    :int = 8;
+		public static const REQUIRES_USER_CONFIRMATION :int = 9;
 
 		public static const STRING_UNKNOWN          :String = "UNKNOWN";
 		public static const STRING_PENDING          :String = "PENDING";
@@ -34,6 +35,7 @@ package tech.oldes.google
 		public static const STRING_CANCELED         :String = "CANCELED";
 		public static const STRING_WAITING_FOR_WIFI :String = "WAITING_FOR_WIFI";
 		public static const STRING_NOT_INSTALLED    :String = "NOT_INSTALLED";
+		public static const STRING_REQUIRES_USER_CONFIRMATION:String = "REQUIRES_USER_CONFIRMATION";
 		
 		private static const names:Array = new Array(
 			STRING_UNKNOWN,
@@ -44,7 +46,8 @@ package tech.oldes.google
 			STRING_FAILED,
 			STRING_CANCELED,
 			STRING_WAITING_FOR_WIFI,
-			STRING_NOT_INSTALLED
+			STRING_NOT_INSTALLED,
+			STRING_REQUIRES_USER_CONFIRMATION
 		);
 		
 		//----------------------------------------
@@ -67,6 +70,7 @@ package tech.oldes.google
 				case STRING_CANCELED:         status = 6; break;
 				case STRING_WAITING_FOR_WIFI: status = 7; break;
 				case STRING_NOT_INSTALLED:    status = 8; break;
+				case STRING_REQUIRES_USER_CONFIRMATION: status = 9; break;
 			}
 			return status;
 		}

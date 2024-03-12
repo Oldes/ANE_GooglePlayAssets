@@ -147,26 +147,16 @@ public class GooglePlayAssetsManager implements AssetPackStateUpdateListener {
 		if (!relativeAssetPath.startsWith("/")) {
 			relativeAssetPath = "/" + relativeAssetPath;
 		}
-
 		Logger.d(TAG, "getAbsoluteAssetPath(\"" + assetPack + "\", \"" + relativeAssetPath + "\")");
 		String assetsFolderPath = null;
-		AssetPackState state = (AssetPackState)this.mAssetPackStateMap.get(assetPack);
-		if (state == null) {
-			Logger.w(TAG, "Attempting to get path for asset pack with unknown status");
-			return null;
-		} else if (state.status() != AssetPackStatus.COMPLETED) {
-			Logger.w(TAG, "Attempting to get path for asset pack that is not yet completed");
-			return null;
+		AssetLocation packLocation = this.assetPackManager.getAssetLocation(assetPack, relativeAssetPath);
+		if (packLocation == null) {
+			Logger.w(TAG, "Asset location not found");
 		} else {
-			AssetLocation loc = this.assetPackManager.getAssetLocation(assetPack, relativeAssetPath);
-			if (loc == null) {
-				Logger.w(TAG, "Asset location not found");
-			} else {
-				 assetsFolderPath = loc.path();
-				 Logger.d(TAG, "Asset location is " + assetsFolderPath);
-			}
-			return assetsFolderPath;
+			 assetsFolderPath = packLocation.path();
+			 Logger.d(TAG, "Asset location is " + assetsFolderPath);
 		}
+		return assetsFolderPath;
 	}
 
 	public String getAssetPackLocation(String assetPack) {
@@ -278,30 +268,21 @@ public class GooglePlayAssetsManager implements AssetPackStateUpdateListener {
 		}
 	}
 
-	public boolean showCellularDataConfirmation(String assetPackName) {
-		Logger.d(TAG, "requestCellularDataConfirmation for " + assetPackName);
-		AssetPackState state = (AssetPackState)this.mAssetPackStateMap.get(assetPackName);
-		if (state == null) {
-			Logger.w(TAG, "Attempting to get details for asset pack with unknown status");
-			return false;
-		} else if (state.status() != AssetPackStatus.WAITING_FOR_WIFI) {
-			Logger.w(TAG, "Asset pack is not in the 'WAITING_FOR_WIFI' status: ignoring request");
-			return false;
-		} else {
-			this.assetPackManager.showCellularDataConfirmation(this.mExtCtx.getActivity()).addOnSuccessListener(new OnSuccessListener<Integer>() {
-				public void onSuccess(Integer resultCode) {
-					if (resultCode == -1) {
-						Logger.i(TAG, "Confirmation dialog has been accepted.");
-					} else if (resultCode == 0) {
-						Logger.i(TAG, "Confirmation dialog has been denied by the user.");
-					} else {
-						Logger.i(TAG, "Confirmation dialog unknown response = " + resultCode);
-					}
-
+	public boolean showConfirmationDialog() {
+		Logger.d(TAG, "showConfirmationDialog");
+		this.assetPackManager.showConfirmationDialog(this.mExtCtx.getActivity()).addOnSuccessListener(new OnSuccessListener<Integer>() {
+			public void onSuccess(Integer resultCode) {
+				if (resultCode == -1) {
+					Logger.i(TAG, "Confirmation dialog has been accepted.");
+				} else if (resultCode == 0) {
+					Logger.i(TAG, "Confirmation dialog has been denied by the user.");
+				} else {
+					Logger.i(TAG, "Confirmation dialog unknown response = " + resultCode);
 				}
-			});
-			return true;
-		}
+
+			}
+		});
+		return true;
 	}
 	public void onStateUpdate(AssetPackState assetPackState) {
 		Logger.i(TAG, "Asset pack onStateUpdate -> " + assetPackState.name() + " -> " + String.valueOf(assetPackState.status()));

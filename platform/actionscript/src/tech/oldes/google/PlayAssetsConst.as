@@ -11,6 +11,6 @@ package tech.oldes.google
 	internal final class PlayAssetsConst
 	{
 		public static const EXTENSIONID : String = "tech.oldes.GooglePlayAssets"; 
-		public static const VERSION : String = "1.0.0"; 
+		public static const VERSION : String = "1.2.0"; 
 	}
 }

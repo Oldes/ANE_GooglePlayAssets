@@ -284,20 +284,17 @@ public class GooglePlayAssetsFunctions
 		}
 	}
 
-	static public class ShowCellularDataConfirmation implements FREFunction {
-		private static final String TAG = "ShowCellularDataConfirmation";
+	static public class ShowConfirmationDialog implements FREFunction {
+		private static final String TAG = "ShowConfirmationDialog";
 		@Override
 		public FREObject call(FREContext freContext, FREObject[] args) {
 			FREObject returnValue = null;
 			Logger.i(TAG, "start");
 			try {
-				FREObject input = args[0];
-				String assetPack = input.getAsString();
-				Logger.d(TAG, "assetPack: " + assetPack);
-				boolean requestStatus = GooglePlayAssetsManager.getInstance().showCellularDataConfirmation(assetPack);
+				boolean requestStatus = GooglePlayAssetsManager.getInstance().showConfirmationDialog();
 				returnValue = FREObject.newObject(requestStatus);
 			} catch (Exception err) {
-				Logger.exception("ShowCellularDataConfirmation", err);
+				Logger.exception(TAG, err);
 			}
 			Logger.d(TAG, "end");
 			return returnValue;
