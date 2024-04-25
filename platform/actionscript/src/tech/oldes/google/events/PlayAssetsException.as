@@ -27,6 +27,8 @@ package tech.oldes.google.events
 		public static const NETWORK_UNRESTRICTED :int = -12;
 		public static const PACK_UNAVAILABLE     :int = -2;
 		public static const PLAY_STORE_NOT_FOUND :int = -11;
+		public static const CONFIRMATION_NOT_REQUIRED :int = -14;
+		public static const UNRECOGNIZED_INSTALLATION :int = -15;
 
 		private var _status:int;
 		private var _name:String;
@@ -54,6 +56,8 @@ package tech.oldes.google.events
 				case NETWORK_UNRESTRICTED : return "NETWORK_UNRESTRICTED";
 				case PACK_UNAVAILABLE     : return "PACK_UNAVAILABLE";
 				case PLAY_STORE_NOT_FOUND : return "PLAY_STORE_NOT_FOUND";
+				case CONFIRMATION_NOT_REQUIRED : return "CONFIRMATION_NOT_REQUIRED";
+				case UNRECOGNIZED_INSTALLATION : return "UNRECOGNIZED_INSTALLATION";
 			}
 			return "NO_ERROR";
 		}
