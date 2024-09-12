@@ -1,5 +1,6 @@
 package tech.oldes.GooglePlayAssets;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -31,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GooglePlayAssetsManager implements AssetPackStateUpdateListener {
+	@SuppressLint("StaticFieldLeak")
 	private static GooglePlayAssetsManager playAssertInstance = null;
 	AssetPackManager assetPackManager;
 	Task<AssetPackStates> assetPackStatesTask = null;
